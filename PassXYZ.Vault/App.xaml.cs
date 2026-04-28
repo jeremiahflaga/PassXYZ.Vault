@@ -12,8 +12,19 @@ public partial class App : Application
         Routing.RegisterRoute(nameof(NewItemPage), typeof(NewItemPage));
 
         DependencyService.Register<MockDataStore>();
-        MainPage = new AppShell();
+
+        // MainPage = new AppShell();
+        /*
+            'Application.MainPage.set' is obsolete: 'This property is deprecated. 
+            Initialize your application by overriding Application.CreateWindow rather than setting MainPage.
+        */
     }
+
+	protected override Window CreateWindow(IActivationState? activationState)
+	{
+		return new PxWindow(new MainPage());
+	}
+
     private async void OnMenuItemClicked(System.Object sender, System.EventArgs e)
     {
         await Shell.Current.GoToAsync("//LoginPage");

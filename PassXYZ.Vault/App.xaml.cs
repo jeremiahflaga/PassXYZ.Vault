@@ -8,6 +8,12 @@ public partial class App : Application
     public App()
     {
         InitializeComponent();
+        /*
+            In the constructor of the App class, the InitializeComponent() method is called to load
+            the XAML and parse it. UI elements defined in the XAML file are created at this point. We can access
+            these UI elements by the name defined with the x:Name attribute
+        */
+
         Routing.RegisterRoute(nameof(ItemDetailPage), typeof(ItemDetailPage));
         Routing.RegisterRoute(nameof(NewItemPage), typeof(NewItemPage));
 

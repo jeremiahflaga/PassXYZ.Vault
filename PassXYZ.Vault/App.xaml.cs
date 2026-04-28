@@ -28,7 +28,8 @@ public partial class App : Application
 
 	protected override Window CreateWindow(IActivationState? activationState)
 	{
-		return new PxWindow(new MainPage());
+		// return new PxWindow(new MainPage());
+        return new PxWindow(new AppShell());
 	}
 
     private async void OnMenuItemClicked(System.Object sender, System.EventArgs e)

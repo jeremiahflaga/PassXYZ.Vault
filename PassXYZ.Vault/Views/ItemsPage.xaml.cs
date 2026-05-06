@@ -1,5 +1,5 @@
 ﻿using System.Diagnostics;
-using PassXYZ.Vault.Models;
+using KPCLib;
 using PassXYZ.Vault.ViewModels;
 using PassXYZ.Vault.Views;
 

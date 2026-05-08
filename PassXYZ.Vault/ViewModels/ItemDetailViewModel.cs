@@ -1,8 +1,11 @@
-﻿using KPCLib;
+﻿using KeePassLib;
+using KPCLib;
+using Microsoft.Maui.Controls;
+using PassXYZLib;
 using System;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Threading.Tasks;
-using Microsoft.Maui.Controls;
 
 namespace PassXYZ.Vault.ViewModels
 {
@@ -13,6 +16,12 @@ namespace PassXYZ.Vault.ViewModels
         private string text;
         private string description;
         public string Id { get; set; }
+        public ObservableCollection<Field> Fields { get; set; }
+
+        public ItemDetailViewModel()
+        {
+            Fields = new ObservableCollection<Field>();
+        }
 
         public string Text
         {
@@ -47,6 +56,17 @@ namespace PassXYZ.Vault.ViewModels
                 Id = item.Id;
                 Text = item.Name;
                 Description = item.Description;
+
+                if (!item.IsGroup)
+                {
+                    PwEntry dataEntry = (PwEntry)item;
+                    Fields.Clear();
+                    List<Field> fields = dataEntry.GetFields(GetImage: FieldIcons.GetImage);
+                    foreach (Field field in fields)
+                    {
+                        Fields.Add(field);
+                    }
+                }
             }
             catch (Exception)
             {
